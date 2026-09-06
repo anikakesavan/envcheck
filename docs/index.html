@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>envcheck — catch .env drift in your browser</title>
+  <meta name="description" content="Paste or drop your .env and .env.example and instantly see what's missing, empty, or stale. Nothing is uploaded — it all runs in your browser." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="page-header">
+    <h1>envcheck</h1>
+    <p class="tagline">
+      Paste your <code>.env</code> and <code>.env.example</code>, see the
+      drift instantly. Nothing is uploaded — this all runs in your browser.
+    </p>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="columns">
+        <div class="column">
+          <div class="column-header">
+            <label for="env-input">.env</label>
+            <label class="file-label">
+              Load file…
+              <input id="env-file" type="file" hidden />
+            </label>
+          </div>
+          <textarea id="env-input" spellcheck="false" placeholder="DATABASE_URL=postgres://...&#10;API_KEY=abc123"></textarea>
+        </div>
+        <div class="column">
+          <div class="column-header">
+            <label for="example-input">.env.example</label>
+            <label class="file-label">
+              Load file…
+              <input id="example-file" type="file" hidden />
+            </label>
+          </div>
+          <textarea id="example-input" spellcheck="false" placeholder="DATABASE_URL=&#10;API_KEY=&#10;STRIPE_SECRET_KEY="></textarea>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="check-btn" type="button" class="primary-btn">Check</button>
+        <button id="scaffold-btn" type="button" class="secondary-btn">Fill in missing keys</button>
+      </div>
+
+      <div id="results" class="results"></div>
+    </section>
+
+    <section class="card context-card">
+      <h2>How it works</h2>
+      <p>
+        Missing keys are ones present in <code>.env.example</code> but not
+        your <code>.env</code>; empty keys exist in both but have no value
+        set; extra keys are in your <code>.env</code> but not the example
+        (often stale leftovers). "Fill in missing keys" appends any missing
+        keys to your <code>.env</code>, copying the example's default,
+        without touching anything you've already set.
+      </p>
+      <p>
+        Prefer the command line, or want this to run automatically in CI?
+        <code>pip install envcheck</code> — see the
+        <a href="https://github.com/anikakesavan/envcheck" target="_blank" rel="noopener">README</a>.
+      </p>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <p>
+      <a href="https://github.com/anikakesavan/envcheck" target="_blank" rel="noopener">Source on GitHub</a>
+    </p>
+  </footer>
+
+  <script type="module" src="app.mjs"></script>
+</body>
+</html>

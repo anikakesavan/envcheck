@@ -1,5 +1,8 @@
 # envcheck
 
+**Try it in your browser, no install: https://anikakesavan.github.io/envcheck/**
+(paste both files in, see the diff instantly — nothing is uploaded).
+
 A tiny, dependency-free CLI that compares your `.env` against your
 `.env.example` and tells you exactly what's missing, empty, or stale —
 before your app crashes on a `KeyError` in production.
